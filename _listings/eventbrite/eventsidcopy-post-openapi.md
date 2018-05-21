@@ -1,0 +1,907 @@
+---
+swagger: "2.0"
+x-collection-name: Eventbrite
+x-complete: 0
+info:
+  title: Eventbrite Add Events  Copy
+  description: Creates a duplicate version of the event being copied. Returns the
+    event object for the newly created event.
+  version: 1.0.0
+host: www.eventbriteapi.com
+basePath: /v3
+schemes:
+- http
+produces:
+- application/json
+consumes:
+- application/json
+paths:
+  /events/:
+    post:
+      summary: Add Events
+      description: Makes a new event, and returns an event for the specified event.
+      operationId: postEvents
+      x-api-path-slug: events-post
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: query
+        name: event.capacity
+        description: Set specific capacity (if omitted, sums ticket capacities)
+        type: query
+      - in: query
+        name: event.category_id
+        description: The category (vertical) of the event
+        type: query
+      - in: query
+        name: event.currency
+        description: Event currency (3 letter code)
+        type: query
+      - in: query
+        name: event.description.html
+        description: The description on the event page
+        type: query
+      - in: query
+        name: event.end.timezone
+        description: End time timezone (Olson format)
+        type: query
+      - in: query
+        name: event.end.utc
+        description: The end time of the event
+        type: query
+      - in: query
+        name: event.format_id
+        description: The format (general type) of the event
+        type: query
+      - in: query
+        name: event.hide_end_date
+        description: Whether the end date should be hidden
+        type: query
+      - in: query
+        name: event.hide_start_date
+        description: Whether the start date should be hidden
+        type: query
+      - in: query
+        name: event.invite_only
+        description: Only invited users can see the event page
+        type: query
+      - in: query
+        name: event.is_reserved_seating
+        description: If the event is reserved seating
+        type: query
+      - in: query
+        name: event.listed
+        description: If the event is publicly listed and searchable
+        type: query
+      - in: query
+        name: event.logo.id
+        description: (Deprecated) The logo for the event
+        type: query
+      - in: query
+        name: event.logo_id
+        description: The logo for the event
+        type: query
+      - in: query
+        name: event.name.html
+        description: The name of the event
+        type: query
+      - in: query
+        name: event.online_event
+        description: Is the event online-only (no venue)?
+        type: query
+      - in: query
+        name: event.organizer_id
+        description: The ID of the organizer of this event
+        type: query
+      - in: query
+        name: event.password
+        description: Password needed to see the event in unlisted mode
+        type: query
+      - in: query
+        name: event.shareable
+        description: If users can share the event on social media
+        type: query
+      - in: query
+        name: event.show_pick_a_seat
+        description: For reserved seating event, if attendees can pick their seats
+        type: query
+      - in: query
+        name: event.show_remaining
+        description: If the remaining number of tickets is publicly visible on the
+          event page
+        type: query
+      - in: query
+        name: event.show_seatmap_thumbnail
+        description: For reserved seating event, if venue map thumbnail visible on
+          the event page
+        type: query
+      - in: query
+        name: event.source
+        description: Source of the event (defaults to API)
+        type: query
+      - in: query
+        name: event.start.timezone
+        description: Start time timezone (Olson format)
+        type: query
+      - in: query
+        name: event.start.utc
+        description: The start time of the event
+        type: query
+      - in: query
+        name: event.subcategory_id
+        description: The subcategory of the event (US only)
+        type: query
+      - in: query
+        name: event.venue_id
+        description: The ID of a previously-created venue to associate with this event
+        type: query
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+  /events/search/:
+    get:
+      summary: Get Events Search
+      description: Allows you to retrieve a paginated response of public event objects
+        from across Eventbrite?s directory, regardless of which user owns the event.
+      operationId: getEventsSearch
+      x-api-path-slug: eventssearch-get
+      parameters:
+      - in: query
+        name: categories
+        description: Only return events under the given category IDs
+        type: query
+      - in: query
+        name: date_modified.keyword
+        description: Only return events with modified dates within the given keyword
+          date range
+        type: query
+      - in: query
+        name: date_modified.range_end
+        description: Only return events with modified dates before the given UTC date
+        type: query
+      - in: query
+        name: date_modified.range_start
+        description: Only return events with modified dates after the given UTC date
+        type: query
+      - in: query
+        name: formats
+        description: Only return events with the given format IDs
+        type: query
+      - in: query
+        name: high_affinity_categories
+        description: Make search results prefer events in these categories
+        type: query
+      - in: query
+        name: include_all_series_instances
+        description: Boolean for whether or not you want to see all instances of repeating
+          events in search results
+        type: query
+      - in: query
+        name: include_unavailable_events
+        description: Boolean for whether or not you want to see events without tickets
+          on sale
+        type: query
+      - in: query
+        name: incorporate_user_affinities
+        description: Incorporate additional information from the user&#8217;s historic
+          preferences
+        type: query
+      - in: query
+        name: location.address
+        description: The address of the location you want to search for events around
+        type: query
+      - in: query
+        name: location.latitude
+        description: The latitude of of the location you want to search for events
+          around
+        type: query
+      - in: query
+        name: location.longitude
+        description: The longitude of the location you want to search for events around
+        type: query
+      - in: query
+        name: location.viewport.northeast.latitude
+        description: The latitude of the northeast corner of a viewport
+        type: query
+      - in: query
+        name: location.viewport.northeast.longitude
+        description: The longitude of the northeast corner of a viewport
+        type: query
+      - in: query
+        name: location.viewport.southwest.latitude
+        description: The latitude of the southwest corner of a viewport
+        type: query
+      - in: query
+        name: location.viewport.southwest.longitude
+        description: The longitude of the southwest corner of a viewport
+        type: query
+      - in: query
+        name: location.within
+        description: The distance you want to search around the given location
+        type: query
+      - in: query
+        name: organizer.id
+        description: Only return events organized by the given Organizer ID
+        type: query
+      - in: query
+        name: price
+        description: Only return events that are &#8220;free&#8221; or &#8220;paid&#8221;
+        type: query
+      - in: query
+        name: q
+        description: Return events matching the given keywords
+      - in: query
+        name: search_type
+        description: Use the preconfigured settings for this type of search - Current
+          option is &#8220;promoted&#8221;
+        type: query
+      - in: query
+        name: sort_by
+        description: Parameter you want to sort by - options are &#8220;date&#8221;,
+          &#8220;distance&#8221; and &#8220;best&#8221;
+        type: query
+      - in: query
+        name: start_date.keyword
+        description: Only return events with start dates within the given keyword
+          date range
+        type: query
+      - in: query
+        name: start_date.range_end
+        description: Only return events with start dates before the given date
+        type: query
+      - in: query
+        name: start_date.range_start
+        description: Only return events with start dates after the given date
+        type: query
+      - in: query
+        name: subcategories
+        description: Only return events under the given subcategory IDs
+        type: query
+      - in: query
+        name: tracking_code
+        description: Append the given tracking_code to the event URLs returned
+        type: query
+      - in: query
+        name: user.id
+        description: Only return events owned by the given User ID
+        type: query
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+      - Search
+  /events/{id}:
+    get:
+      summary: Get Events
+      description: Returns an event for the specified event. Many of Eventbrite?s
+        API use cases resolve around pulling details of a specific event within an
+        Eventbrite account.
+      operationId: getEvents
+      x-api-path-slug: eventsid-get
+      parameters:
+      - in: path
+        name: id
+        description: Event Id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+    post:
+      summary: Add Events
+      description: Updates an event. Returns an event for the specified event.
+      operationId: postEvents
+      x-api-path-slug: eventsid-post
+      parameters:
+      - in: body
+        name: body
+        schema:
+          $ref: '#/definitions/holder'
+      - in: path
+        name: id
+        description: Event Id
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+  /categories/:
+    get:
+      summary: Get Categories
+      description: |-
+        Returns a list of category as categories, including
+        subcategories nested.
+      operationId: getCategories
+      x-api-path-slug: categories-get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Categories
+  /categories/{id}/:
+    get:
+      summary: Get Categories
+      description: Gets a category by ID as category.
+      operationId: getCategories
+      x-api-path-slug: categoriesid-get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Categories
+  /subcategories/:
+    get:
+      summary: Get Subcategories
+      description: Returns a list of subcategory as subcategories.
+      operationId: getSubcategories
+      x-api-path-slug: subcategories-get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Subcategories
+  /subcategories/{id}/:
+    get:
+      summary: Get Subcategories
+      description: Gets a subcategory by ID as subcategory.
+      operationId: getSubcategories
+      x-api-path-slug: subcategoriesid-get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Subcategories
+  /checkout_settings/countries_currencies/:
+    get:
+      summary: Get Checkout Settings Countries Currencies
+      description: Get the countries and currencies which are supported by Eventbrite
+        for ticket payment
+      operationId: getCheckoutSettingsCountriesCurrencies
+      x-api-path-slug: checkout-settingscountries-currencies-get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Checkout
+      - Settings
+      - Countries
+      - Currencies
+  /checkout_settings/methods/:
+    get:
+      summary: Get Checkout Settings Methods
+      description: Get the available checkout methods to do payments given a country
+        and a currency.
+      operationId: getCheckoutSettingsMethods
+      x-api-path-slug: checkout-settingsmethods-get
+      parameters:
+      - in: query
+        name: country
+        description: Expected methods for Country
+        type: query
+      - in: query
+        name: currency
+        description: Expected methods for Currency
+        type: query
+      responses:
+        200:
+          description: OK
+      tags:
+      - Checkout
+      - Settings
+      - Methods
+  /checkout_settings/:
+    get:
+      summary: Get Checkout Settings
+      description: Searches and returns a list of checkout_settings for the current
+        user as the key checkout_settings.
+      operationId: getCheckoutSettings
+      x-api-path-slug: checkout-settings-get
+      parameters:
+      - in: query
+        name: checkout_methods
+        description: One or more optional (comma-separated) checkout methods by which
+          to filter checkout settings
+        type: query
+      - in: query
+        name: country
+        description: An optional country code by which to filter checkout settings
+        type: query
+      - in: query
+        name: currency
+        description: An optional currency code by which to filter checkout settings
+        type: query
+      - in: query
+        name: search_most_recent_event
+        description: '&#160;'
+        type: query
+      responses:
+        200:
+          description: OK
+      tags:
+      - Checkout
+      - Settings
+    post:
+      summary: Add Checkout Settings
+      description: Creates a new checkout_settings object belonging to the current
+        user. Two common settings are Eventbrite Payment Processing ( checkout_method
+        = &#8220;eventbrite&#8221; ) and PayPal ( checkout_method = &#8220;paypal&#8221;
+        ). In addition to the checkout_method you must provide the country and currency
+        proceeds from the event should be paid to.
+      operationId: postCheckoutSettings
+      x-api-path-slug: checkout-settings-post
+      responses:
+        200:
+          description: OK
+      tags:
+      - Checkout
+      - Settings
+  /checkout_settings/:checkout_settings_id/:
+    get:
+      summary: Get Checkout Settings Checkout Settings
+      description: Get a specific checkout_settings object by ID
+      operationId: getCheckoutSettingsCheckoutSettings
+      x-api-path-slug: checkout-settingscheckout-settings-id-get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Checkout
+      - Settings
+      - Checkout
+      - Settings
+  /events/:event_id/checkout_settings/:
+    get:
+      summary: Get Events Event  Checkout Settings
+      description: Gets and returns a list of checkout_settings associated with a
+        given event by its event_id.
+      operationId: getEventsEventCheckoutSettings
+      x-api-path-slug: eventsevent-idcheckout-settings-get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+      - Event
+      - ""
+      - Checkout
+      - Settings
+    post:
+      summary: Add Events Event  Checkout Settings
+      description: Associate a single or set of checkout_settings with a given event
+        by its event_id. This does not add more checkout settings to the event, but
+        instead replaces all checkout settings for the event with the one(s) submitted.
+        The JSON post body is a string list of the checkout_settings IDs you want
+        to associate.
+      operationId: postEventsEventCheckoutSettings
+      x-api-path-slug: eventsevent-idcheckout-settings-post
+      parameters:
+      - in: query
+        name: checkout_settings_ids
+        description: A list of IDs for checkout settings that should be linked to
+          the event
+        type: query
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+      - Event
+      - ""
+      - Checkout
+      - Settings
+  /events/:event_id/payout_settings/:
+    get:
+      summary: Get Events Event  Payout Settings
+      description: Gets and returns the payout_settings (user instrument ID) associated
+        with a given event by its event_id.
+      operationId: getEventsEventPayoutSettings
+      x-api-path-slug: eventsevent-idpayout-settings-get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+      - Event
+      - ""
+      - Payout
+      - Settings
+    post:
+      summary: Add Events Event  Payout Settings
+      description: Associate a payout user instrument ID with a given event, or clear
+        the association by passing a null value for the user instrument ID.
+      operationId: postEventsEventPayoutSettings
+      x-api-path-slug: eventsevent-idpayout-settings-post
+      parameters:
+      - in: query
+        name: payout_settings.user_instrument_vault_id
+        description: The vault ID for the user instrument to which payouts are sent
+        type: query
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+      - Event
+      - ""
+      - Payout
+      - Settings
+  /discounts/:discount_id/:
+    get:
+      summary: Get Discounts Discount
+      description: Returns the cross_event_discount with the specified :discount_id.
+      operationId: getDiscountsDiscount
+      x-api-path-slug: discountsdiscount-id-get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Discounts
+      - Discount
+    post:
+      summary: Add Discounts Discount
+      description: Updates the discount with the specified :discount_id. Returns the
+        updated cross_event_discount. The fields sent are the ones that are going
+        to be updated, the fields that are not sent will be unchanged. The same conditions
+        and notes for the discount creation apply.
+      operationId: postDiscountsDiscount
+      x-api-path-slug: discountsdiscount-id-post
+      parameters:
+      - in: query
+        name: discount.amount_off
+        description: Fixed reduction amount
+        type: query
+      - in: query
+        name: discount.code
+        description: Code used to activate discount
+        type: query
+      - in: query
+        name: discount.end_date
+        description: Allow use until this date
+        type: query
+      - in: query
+        name: discount.end_date_relative
+        description: Allow use until this number of seconds before the event starts
+        type: query
+      - in: query
+        name: discount.hold_ids
+        description: IDs of holds this discount can unlock
+        type: query
+      - in: query
+        name: discount.percent_off
+        description: Percentage reduction
+        type: query
+      - in: query
+        name: discount.quantity_available
+        description: Number of discount uses
+        type: query
+      - in: query
+        name: discount.start_date
+        description: Allow use from this date
+        type: query
+      - in: query
+        name: discount.start_date_relative
+        description: Allow use from this number of seconds before the event starts
+        type: query
+      - in: query
+        name: discount.ticket_class_ids
+        description: IDs of tickets to limit discount to
+        type: query
+      responses:
+        200:
+          description: OK
+      tags:
+      - Discounts
+      - Discount
+    delete:
+      summary: Delete Discounts Discount
+      description: |-
+        Deletes the cross_event_discount with the specified :discount_id.
+        Only unused discounts can be deleted.
+      operationId: deleteDiscountsDiscount
+      x-api-path-slug: discountsdiscount-id-delete
+      responses:
+        200:
+          description: OK
+      tags:
+      - Discounts
+      - Discount
+  /discounts/:
+    post:
+      summary: Add Discounts
+      description: Creates a discount. Returns the created cross_event_discount.
+      operationId: postDiscounts
+      x-api-path-slug: discounts-post
+      parameters:
+      - in: query
+        name: discount.amount_off
+        description: Fixed reduction amount
+        type: query
+      - in: query
+        name: discount.code
+        description: Code used to activate discount
+        type: query
+      - in: query
+        name: discount.end_date
+        description: Allow use until this date
+        type: query
+      - in: query
+        name: discount.end_date_relative
+        description: Allow use until this number of seconds before the event starts
+        type: query
+      - in: query
+        name: discount.event_id
+        description: ID of the event
+        type: query
+      - in: query
+        name: discount.hold_ids
+        description: IDs of holds this discount can unlock
+        type: query
+      - in: query
+        name: discount.percent_off
+        description: Percentage reduction
+        type: query
+      - in: query
+        name: discount.quantity_available
+        description: Number of discount uses
+        type: query
+      - in: query
+        name: discount.start_date
+        description: Allow use from this date
+        type: query
+      - in: query
+        name: discount.start_date_relative
+        description: Allow use from this number of seconds before the event starts
+        type: query
+      - in: query
+        name: discount.ticket_class_ids
+        description: IDs of tickets to limit discount to
+        type: query
+      - in: query
+        name: discount.ticket_group_id
+        description: ID of the ticket group
+        type: query
+      - in: query
+        name: discount.type
+        description: The type of discount
+        type: query
+      responses:
+        200:
+          description: OK
+      tags:
+      - Discounts
+  /events/{id}/:
+    get:
+      summary: Get Events
+      description: "Returns an event for the specified event. Many of Eventbrite\u2019s
+        API use cases revolve around pulling details\nof a specific event within an
+        Eventbrite account. Does not support fetching a repeating event series parent\n(see
+        GET /series/:id/)."
+      operationId: getEvents
+      x-api-path-slug: eventsid-get
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+    post:
+      summary: Add Events
+      description: |-
+        Updates an event. Returns an event for the specified event. Does not support updating a repeating event
+        series parent (see POST /series/:id/).
+      operationId: postEvents
+      x-api-path-slug: eventsid-post
+      parameters:
+      - in: query
+        name: event.capacity
+        description: Set specific capacity (if omitted, sums ticket capacities)
+        type: query
+      - in: query
+        name: event.category_id
+        description: The category (vertical) of the event
+        type: query
+      - in: query
+        name: event.currency
+        description: Event currency (3 letter code)
+        type: query
+      - in: query
+        name: event.description.html
+        description: The description on the event page
+        type: query
+      - in: query
+        name: event.end.timezone
+        description: End time timezone (Olson format)
+        type: query
+      - in: query
+        name: event.end.utc
+        description: The end time of the event
+        type: query
+      - in: query
+        name: event.format_id
+        description: The format (general type) of the event
+        type: query
+      - in: query
+        name: event.hide_end_date
+        description: Whether the end date should be hidden
+        type: query
+      - in: query
+        name: event.hide_start_date
+        description: Whether the start date should be hidden
+        type: query
+      - in: query
+        name: event.invite_only
+        description: Only invited users can see the event page
+        type: query
+      - in: query
+        name: event.is_reserved_seating
+        description: If the event is reserved seating
+        type: query
+      - in: query
+        name: event.listed
+        description: If the event is publicly listed and searchable
+        type: query
+      - in: query
+        name: event.logo.id
+        description: (Deprecated) The logo for the event
+        type: query
+      - in: query
+        name: event.logo_id
+        description: The logo for the event
+        type: query
+      - in: query
+        name: event.name.html
+        description: The name of the event
+        type: query
+      - in: query
+        name: event.online_event
+        description: Is the event online-only (no venue)?
+        type: query
+      - in: query
+        name: event.organizer_id
+        description: The ID of the organizer of this event
+        type: query
+      - in: query
+        name: event.password
+        description: Password needed to see the event in unlisted mode
+        type: query
+      - in: query
+        name: event.shareable
+        description: If users can share the event on social media
+        type: query
+      - in: query
+        name: event.show_pick_a_seat
+        description: For reserved seating event, if attendees can pick their seats
+        type: query
+      - in: query
+        name: event.show_remaining
+        description: If the remaining number of tickets is publicly visible on the
+          event page
+        type: query
+      - in: query
+        name: event.show_seatmap_thumbnail
+        description: For reserved seating event, if venue map thumbnail visible on
+          the event page
+        type: query
+      - in: query
+        name: event.source
+        description: Source of the event (defaults to API)
+        type: query
+      - in: query
+        name: event.start.timezone
+        description: Start time timezone (Olson format)
+        type: query
+      - in: query
+        name: event.start.utc
+        description: The start time of the event
+        type: query
+      - in: query
+        name: event.subcategory_id
+        description: The subcategory of the event (US only)
+        type: query
+      - in: query
+        name: event.venue_id
+        description: ID of the venue
+        type: query
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+  /events/{id}/publish/:
+    post:
+      summary: Add Events  Publish
+      description: |-
+        Publishes an event if it has not already been deleted. In order for publish to be permitted, the event must have all
+        necessary information, including a name and description, an organizer, at least one ticket, and valid payment options.
+        This API endpoint will return argument errors for event fields that fail to validate the publish requirements. Returns
+        a boolean indicating success or failure of the publish.
+      operationId: postEventsPublish
+      x-api-path-slug: eventsidpublish-post
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+      - ""
+      - Publish
+  /events/{id}/unpublish/:
+    post:
+      summary: Add Events  Unpublish
+      description: |-
+        Unpublishes an event. In order for a free event to be unpublished, it must not have any pending or completed orders,
+        even if the event is in the past. In order for a paid event to be unpublished, it must not have any pending or completed
+        orders, unless the event has been completed and paid out. Returns a boolean indicating success or failure of the
+        unpublish.
+      operationId: postEventsUnpublish
+      x-api-path-slug: eventsidunpublish-post
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+      - ""
+      - Unpublish
+  /events/{id}/cancel/:
+    post:
+      summary: Add Events  Cancel
+      description: |-
+        Cancels an event if it has not already been deleted. In order for cancel to be permitted, there must be no pending or
+        completed orders. Returns a boolean indicating success or failure of the cancel.
+      operationId: postEventsCancel
+      x-api-path-slug: eventsidcancel-post
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+      - ""
+      - Cancel
+  /events/{id}/copy/:
+    post:
+      summary: Add Events  Copy
+      description: Creates a duplicate version of the event being copied. Returns
+        the event object for the newly created event.
+      operationId: postEventsCopy
+      x-api-path-slug: eventsidcopy-post
+      parameters:
+      - in: query
+        name: end_date
+        description: The end time of the new event
+        type: query
+      - in: query
+        name: name
+        description: The name of the new event
+        type: query
+      - in: query
+        name: start_date
+        description: The start time of the new event
+        type: query
+      - in: query
+        name: timezone
+        description: timezone for the new event (Olson format)
+        type: query
+      responses:
+        200:
+          description: OK
+      tags:
+      - Events
+      - ""
+      - Copy
+x-streamrank:
+  polling_total_time_average: 0
+  polling_size_download_average: 0
+  streaming_total_time_average: 0
+  streaming_size_download_average: 0
+  change_yes: 0
+  change_no: 0
+  time_percentage: 0
+  size_percentage: 0
+  change_percentage: 0
+  last_run: ""
+  days_run: 0
+  minute_run: 0
+---
