@@ -4,7 +4,7 @@ x-collection-name: Eventbrite
 x-complete: 1
 info:
   title: Eventbrite
-  description: the-eventbrite-api-is-the-best-way-to-integrate-and-extend-eventbrite-for-your-event-or-organising-needs-version-3-of-the-api-brings-you-faster-responses-consistent-data-types-more-endpoints-and-easier-debugging-and-testing
+  description: the-eventbrite-api-is-the-best-way-to-integrate-and-extend-eventbrite-for-your-event-or-organising-needs--version-3-of-the-api-brings-you-faster-responses-consistent-data-types-more-endpoints-and-easier-debugging-and-testing-
   version: 1.0.0
 host: www.eventbriteapi.com
 basePath: /v3
