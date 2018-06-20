@@ -3,11 +3,11 @@ swagger: "2.0"
 x-collection-name: Eventbrite
 x-complete: 0
 info:
-  title: Eventbrite Add Venues
+  title: Eventbrite Post Venues
   description: Updates a venue and returns it as an object.
   version: 1.0.0
-host: www.eventbriteapi.com
-basePath: /v3
+host: www.eventbrite.com
+basePath: /%7Bdata-type%7D/
 schemes:
 - http
 produces:
@@ -17,7 +17,7 @@ consumes:
 paths:
   /events/:
     post:
-      summary: Add Events
+      summary: Post Events
       description: Makes a new event, and returns an event for the specified event.
       operationId: postEvents
       x-api-path-slug: events-post
@@ -141,139 +141,6 @@ paths:
           description: OK
       tags:
       - Events
-  /events/search/:
-    get:
-      summary: Get Events Search
-      description: Allows you to retrieve a paginated response of public event objects
-        from across Eventbrite?s directory, regardless of which user owns the event.
-      operationId: getEventsSearch
-      x-api-path-slug: eventssearch-get
-      parameters:
-      - in: query
-        name: categories
-        description: Only return events under the given category IDs
-        type: query
-      - in: query
-        name: date_modified.keyword
-        description: Only return events with modified dates within the given keyword
-          date range
-        type: query
-      - in: query
-        name: date_modified.range_end
-        description: Only return events with modified dates before the given UTC date
-        type: query
-      - in: query
-        name: date_modified.range_start
-        description: Only return events with modified dates after the given UTC date
-        type: query
-      - in: query
-        name: formats
-        description: Only return events with the given format IDs
-        type: query
-      - in: query
-        name: high_affinity_categories
-        description: Make search results prefer events in these categories
-        type: query
-      - in: query
-        name: include_all_series_instances
-        description: Boolean for whether or not you want to see all instances of repeating
-          events in search results
-        type: query
-      - in: query
-        name: include_unavailable_events
-        description: Boolean for whether or not you want to see events without tickets
-          on sale
-        type: query
-      - in: query
-        name: incorporate_user_affinities
-        description: Incorporate additional information from the user&#8217;s historic
-          preferences
-        type: query
-      - in: query
-        name: location.address
-        description: The address of the location you want to search for events around
-        type: query
-      - in: query
-        name: location.latitude
-        description: The latitude of of the location you want to search for events
-          around
-        type: query
-      - in: query
-        name: location.longitude
-        description: The longitude of the location you want to search for events around
-        type: query
-      - in: query
-        name: location.viewport.northeast.latitude
-        description: The latitude of the northeast corner of a viewport
-        type: query
-      - in: query
-        name: location.viewport.northeast.longitude
-        description: The longitude of the northeast corner of a viewport
-        type: query
-      - in: query
-        name: location.viewport.southwest.latitude
-        description: The latitude of the southwest corner of a viewport
-        type: query
-      - in: query
-        name: location.viewport.southwest.longitude
-        description: The longitude of the southwest corner of a viewport
-        type: query
-      - in: query
-        name: location.within
-        description: The distance you want to search around the given location
-        type: query
-      - in: query
-        name: organizer.id
-        description: Only return events organized by the given Organizer ID
-        type: query
-      - in: query
-        name: price
-        description: Only return events that are &#8220;free&#8221; or &#8220;paid&#8221;
-        type: query
-      - in: query
-        name: q
-        description: Return events matching the given keywords
-      - in: query
-        name: search_type
-        description: Use the preconfigured settings for this type of search - Current
-          option is &#8220;promoted&#8221;
-        type: query
-      - in: query
-        name: sort_by
-        description: Parameter you want to sort by - options are &#8220;date&#8221;,
-          &#8220;distance&#8221; and &#8220;best&#8221;
-        type: query
-      - in: query
-        name: start_date.keyword
-        description: Only return events with start dates within the given keyword
-          date range
-        type: query
-      - in: query
-        name: start_date.range_end
-        description: Only return events with start dates before the given date
-        type: query
-      - in: query
-        name: start_date.range_start
-        description: Only return events with start dates after the given date
-        type: query
-      - in: query
-        name: subcategories
-        description: Only return events under the given subcategory IDs
-        type: query
-      - in: query
-        name: tracking_code
-        description: Append the given tracking_code to the event URLs returned
-        type: query
-      - in: query
-        name: user.id
-        description: Only return events owned by the given User ID
-        type: query
-      responses:
-        200:
-          description: OK
-      tags:
-      - Events
-      - Search
   /events/{id}:
     get:
       summary: Get Events
@@ -292,7 +159,7 @@ paths:
       tags:
       - Events
     post:
-      summary: Add Events
+      summary: Post Events
       description: Updates an event. Returns an event for the specified event.
       operationId: postEvents
       x-api-path-slug: eventsid-post
@@ -309,19 +176,6 @@ paths:
           description: OK
       tags:
       - Events
-  /categories/:
-    get:
-      summary: Get Categories
-      description: |-
-        Returns a list of category as categories, including
-        subcategories nested.
-      operationId: getCategories
-      x-api-path-slug: categories-get
-      responses:
-        200:
-          description: OK
-      tags:
-      - Categories
   /categories/{id}/:
     get:
       summary: Get Categories
@@ -425,7 +279,7 @@ paths:
       - Checkout
       - Settings
     post:
-      summary: Add Checkout Settings
+      summary: Post Checkout Settings
       description: Creates a new checkout_settings object belonging to the current
         user. Two common settings are Eventbrite Payment Processing ( checkout_method
         = &#8220;eventbrite&#8221; ) and PayPal ( checkout_method = &#8220;paypal&#8221;
@@ -451,11 +305,11 @@ paths:
       tags:
       - Checkout
       - Settings
-      - Checkout
+      - :checkout
       - Settings
   /events/:event_id/checkout_settings/:
     get:
-      summary: Get Events Event  Checkout Settings
+      summary: Get Events Event Checkout Settings
       description: Gets and returns a list of checkout_settings associated with a
         given event by its event_id.
       operationId: getEventsEventCheckoutSettings
@@ -465,12 +319,11 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Checkout
       - Settings
     post:
-      summary: Add Events Event  Checkout Settings
+      summary: Post Events Event Checkout Settings
       description: Associate a single or set of checkout_settings with a given event
         by its event_id. This does not add more checkout settings to the event, but
         instead replaces all checkout settings for the event with the one(s) submitted.
@@ -489,13 +342,12 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Checkout
       - Settings
   /events/:event_id/payout_settings/:
     get:
-      summary: Get Events Event  Payout Settings
+      summary: Get Events Event Payout Settings
       description: Gets and returns the payout_settings (user instrument ID) associated
         with a given event by its event_id.
       operationId: getEventsEventPayoutSettings
@@ -505,12 +357,11 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Payout
       - Settings
     post:
-      summary: Add Events Event  Payout Settings
+      summary: Post Events Event Payout Settings
       description: Associate a payout user instrument ID with a given event, or clear
         the association by passing a null value for the user instrument ID.
       operationId: postEventsEventPayoutSettings
@@ -525,8 +376,7 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Payout
       - Settings
   /discounts/:discount_id/:
@@ -540,9 +390,9 @@ paths:
           description: OK
       tags:
       - Discounts
-      - Discount
+      - :discount
     post:
-      summary: Add Discounts Discount
+      summary: Post Discounts Discount
       description: Updates the discount with the specified :discount_id. Returns the
         updated cross_event_discount. The fields sent are the ones that are going
         to be updated, the fields that are not sent will be unchanged. The same conditions
@@ -595,7 +445,7 @@ paths:
           description: OK
       tags:
       - Discounts
-      - Discount
+      - :discount
     delete:
       summary: Delete Discounts Discount
       description: |-
@@ -608,10 +458,10 @@ paths:
           description: OK
       tags:
       - Discounts
-      - Discount
+      - :discount
   /discounts/:
     post:
-      summary: Add Discounts
+      summary: Post Discounts
       description: Creates a discount. Returns the created cross_event_discount.
       operationId: postDiscounts
       x-api-path-slug: discounts-post
@@ -688,7 +538,7 @@ paths:
       tags:
       - Events
     post:
-      summary: Add Events
+      summary: Post Events
       description: |-
         Updates an event. Returns an event for the specified event. Does not support updating a repeating event
         series parent (see POST /series/:id/).
@@ -824,7 +674,7 @@ paths:
       - Events
   /events/{id}/publish/:
     post:
-      summary: Add Events  Publish
+      summary: Post Events Publish
       description: |-
         Publishes an event if it has not already been deleted. In order for publish to be permitted, the event must have all
         necessary information, including a name and description, an organizer, at least one ticket, and valid payment options.
@@ -837,11 +687,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Publish
   /events/{id}/unpublish/:
     post:
-      summary: Add Events  Unpublish
+      summary: Post Events Unpublish
       description: |-
         Unpublishes an event. In order for a free event to be unpublished, it must not have any pending or completed orders,
         even if the event is in the past. In order for a paid event to be unpublished, it must not have any pending or completed
@@ -854,11 +703,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Unpublish
   /events/{id}/cancel/:
     post:
-      summary: Add Events  Cancel
+      summary: Post Events Cancel
       description: |-
         Cancels an event if it has not already been deleted. In order for cancel to be permitted, there must be no pending or
         completed orders. Returns a boolean indicating success or failure of the cancel.
@@ -869,11 +717,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Cancel
   /events/{id}/copy/:
     post:
-      summary: Add Events  Copy
+      summary: Post Events Copy
       description: Creates a duplicate version of the event being copied. Returns
         the event object for the newly created event.
       operationId: postEventsCopy
@@ -900,11 +747,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Copy
   /events/{id}/display_settings/:
     get:
-      summary: Get Events  Display Settings
+      summary: Get Events Display Settings
       description: Retrieves the display settings for an event.
       operationId: getEventsDisplaySettings
       x-api-path-slug: eventsiddisplay-settings-get
@@ -913,11 +759,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Display
       - Settings
     post:
-      summary: Add Events  Display Settings
+      summary: Post Events Display Settings
       description: Updates the display settings for an event.
       operationId: postEventsDisplaySettings
       x-api-path-slug: eventsiddisplay-settings-post
@@ -969,12 +814,11 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Display
       - Settings
   /events/{id}/ticket_classes/:
     get:
-      summary: Get Events  Ticket Classes
+      summary: Get Events Ticket Classes
       description: |-
         Returns a paginated response with a key of
         ticket_classes, containing a list of ticket_class.
@@ -991,11 +835,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Ticket
       - Classes
     post:
-      summary: Add Events  Ticket Classes
+      summary: Post Events Ticket Classes
       description: |-
         Creates a new ticket class, returning the result as a ticket_class
         under the key ticket_class.
@@ -1093,12 +936,11 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Ticket
       - Classes
   /events/{id}/ticket_classes/:ticket_class_id/:
     get:
-      summary: Get Events  Ticket Classes Ticket Class
+      summary: Get Events Ticket Classes Ticket Class
       description: |-
         Gets and returns a single ticket_class by ID, as the key
         ticket_class.
@@ -1109,13 +951,12 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Ticket
       - Classes
-      - Ticket
+      - :ticket
       - Class
     post:
-      summary: Add Events  Ticket Classes Ticket Class
+      summary: Post Events Ticket Classes Ticket Class
       description: Updates an existing ticket class, returning the updated result
         as a ticket_class under the key ticket_class.
       operationId: postEventsTicketClassesTicketClass
@@ -1212,13 +1053,12 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Ticket
       - Classes
-      - Ticket
+      - :ticket
       - Class
     delete:
-      summary: Delete Events  Ticket Classes Ticket Class
+      summary: Delete Events Ticket Classes Ticket Class
       description: 'Deletes the ticket class. Returns {&quot;deleted&quot;: true}.'
       operationId: deleteEventsTicketClassesTicketClass
       x-api-path-slug: eventsidticket-classesticket-class-id-delete
@@ -1232,14 +1072,13 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Ticket
       - Classes
-      - Ticket
+      - :ticket
       - Class
   /events/{id}/canned_questions/:
     get:
-      summary: Get Events  Canned Questions
+      summary: Get Events Canned Questions
       description: 'This endpoint returns canned questions of a single event (examples:
         first name, last name, company, prefix, etc.). This endpoint will return question.'
       operationId: getEventsCannedQuestions
@@ -1254,11 +1093,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Canned
       - Questions
     post:
-      summary: Add Events  Canned Questions
+      summary: Post Events Canned Questions
       description: Creates a new canned question; returns the result as a question.
       operationId: postEventsCannedQuestions
       x-api-path-slug: eventsidcanned-questions-post
@@ -1310,12 +1148,11 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Canned
       - Questions
   /events/{id}/questions/:
     get:
-      summary: Get Events  Questions
+      summary: Get Events Questions
       description: |-
         Eventbrite allows event organizers to add custom questions that attendees fill
         out upon registration. This endpoint can be helpful for determining what
@@ -1332,10 +1169,9 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Questions
     post:
-      summary: Add Events  Questions
+      summary: Post Events Questions
       description: Creates a new question; returns the result as a question as the
         key question.
       operationId: postEventsQuestions
@@ -1388,11 +1224,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Questions
   /events/{id}/questions/{id}/:
     get:
-      summary: Get Events  Questions
+      summary: Get Events Questions
       description: This endpoint will return question for a specific question id.
       operationId: getEventsQuestions
       x-api-path-slug: eventsidquestionsid-get
@@ -1401,48 +1236,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Questions
-  /events/{id}/attendees/:
-    get:
-      summary: Get Events  Attendees
-      description: Returns a paginated response with a key of attendees, containing
-        a list of attendee.
-      operationId: getEventsAttendees
-      x-api-path-slug: eventsidattendees-get
-      parameters:
-      - in: query
-        name: attendee_ids
-        description: Only return attendees whose ids are in this list
-        type: query
-      - in: query
-        name: changed_since
-        description: Only return attendees changed on or after the time given
-        type: query
-      - in: path
-        name: id
-        description: The unique event id
-        type: string
-        format: string
-      - in: query
-        name: last_item_seen
-        description: Only return attendees changed on or after the time given and
-          with an id bigger than last item seen
-        type: query
-      - in: query
-        name: status
-        description: Limits results to either confirmed attendees or cancelled/refunded/etc
-        type: query
-      responses:
-        200:
-          description: OK
-      tags:
-      - Events
-      - ""
-      - Attendees
   /events/{id}/attendees/:attendee_id/:
     get:
-      summary: Get Events  Attendees Attendee
+      summary: Get Events Attendees Attendee
       description: Returns a single attendee by ID, as the key attendee.
       operationId: getEventsAttendeesAttendee
       x-api-path-slug: eventsidattendeesattendee-id-get
@@ -1451,12 +1248,11 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Attendees
-      - Attendee
+      - :attendee
   /events/{id}/orders/:
     get:
-      summary: Get Events  Orders
+      summary: Get Events Orders
       description: Returns a paginated response with a key of orders, containing a
         list of order against this event.
       operationId: getEventsOrders
@@ -1494,11 +1290,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Orders
   /events/{id}/discounts/:
     get:
-      summary: Get Events  Discounts
+      summary: Get Events Discounts
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/users/#ebapi-get-users-user-id-discounts
       operationId: getEventsDiscounts
       x-api-path-slug: eventsiddiscounts-get
@@ -1507,10 +1302,9 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Discounts
     post:
-      summary: Add Events  Discounts
+      summary: Post Events Discounts
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/cross_event_discounts/#ebapi-post-discounts
       operationId: postEventsDiscounts
       x-api-path-slug: eventsiddiscounts-post
@@ -1519,11 +1313,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Discounts
   /events/{id}/discounts/:discount_id/:
     get:
-      summary: Get Events  Discounts Discount
+      summary: Get Events Discounts Discount
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/cross_event_discounts/#ebapi-get-discounts-discount-id
       operationId: getEventsDiscountsDiscount
       x-api-path-slug: eventsiddiscountsdiscount-id-get
@@ -1532,11 +1325,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Discounts
-      - Discount
+      - :discount
     post:
-      summary: Add Events  Discounts Discount
+      summary: Post Events Discounts Discount
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/cross_event_discounts/#ebapi-post-discounts-discount-id
       operationId: postEventsDiscountsDiscount
       x-api-path-slug: eventsiddiscountsdiscount-id-post
@@ -1545,11 +1337,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Discounts
-      - Discount
+      - :discount
     delete:
-      summary: Delete Events  Discounts Discount
+      summary: Delete Events Discounts Discount
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/cross_event_discounts/#ebapi-delete-discounts-discount-id
       operationId: deleteEventsDiscountsDiscount
       x-api-path-slug: eventsiddiscountsdiscount-id-delete
@@ -1558,12 +1349,11 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Discounts
-      - Discount
+      - :discount
   /events/{id}/public_discounts/:
     get:
-      summary: Get Events  Public Discounts
+      summary: Get Events Public Discounts
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/users/#ebapi-get-users-user-id-discounts
       operationId: getEventsPublicDiscounts
       x-api-path-slug: eventsidpublic-discounts-get
@@ -1572,11 +1362,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Public
       - Discounts
     post:
-      summary: Add Events  Public Discounts
+      summary: Post Events Public Discounts
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/cross_event_discounts/#ebapi-post-discounts
       operationId: postEventsPublicDiscounts
       x-api-path-slug: eventsidpublic-discounts-post
@@ -1585,12 +1374,11 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Public
       - Discounts
   /events/{id}/public_discounts/:discount_id/:
     get:
-      summary: Get Events  Public Discounts Discount
+      summary: Get Events Public Discounts Discount
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/cross_event_discounts/#ebapi-get-discounts-discount-id
       operationId: getEventsPublicDiscountsDiscount
       x-api-path-slug: eventsidpublic-discountsdiscount-id-get
@@ -1599,12 +1387,11 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Public
       - Discounts
-      - Discount
+      - :discount
     post:
-      summary: Add Events  Public Discounts Discount
+      summary: Post Events Public Discounts Discount
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/cross_event_discounts/#ebapi-post-discounts-discount-id
       operationId: postEventsPublicDiscountsDiscount
       x-api-path-slug: eventsidpublic-discountsdiscount-id-post
@@ -1613,12 +1400,11 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Public
       - Discounts
-      - Discount
+      - :discount
     delete:
-      summary: Delete Events  Public Discounts Discount
+      summary: Delete Events Public Discounts Discount
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/cross_event_discounts/#ebapi-delete-discounts-discount-id
       operationId: deleteEventsPublicDiscountsDiscount
       x-api-path-slug: eventsidpublic-discountsdiscount-id-delete
@@ -1627,13 +1413,12 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Public
       - Discounts
-      - Discount
+      - :discount
   /events/{id}/access_codes/:
     get:
-      summary: Get Events  Access Codes
+      summary: Get Events Access Codes
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/users/#ebapi-get-users-user-id-discounts
       operationId: getEventsAccessCodes
       x-api-path-slug: eventsidaccess-codes-get
@@ -1642,11 +1427,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Access
       - Codes
     post:
-      summary: Add Events  Access Codes
+      summary: Post Events Access Codes
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/cross_event_discounts/#ebapi-post-discounts
       operationId: postEventsAccessCodes
       x-api-path-slug: eventsidaccess-codes-post
@@ -1655,11 +1439,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Access
       - Codes
     delete:
-      summary: Delete Events  Access Codes
+      summary: Delete Events Access Codes
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/cross_event_discounts/#ebapi-delete-discounts-discount-id
       operationId: deleteEventsAccessCodes
       x-api-path-slug: eventsidaccess-codes-delete
@@ -1668,12 +1451,11 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Access
       - Codes
   /events/{id}/access_codes/:access_code_id/:
     get:
-      summary: Get Events  Access Codes Access Code
+      summary: Get Events Access Codes Access Code
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/cross_event_discounts/#ebapi-get-discounts-discount-id
       operationId: getEventsAccessCodesAccessCode
       x-api-path-slug: eventsidaccess-codesaccess-code-id-get
@@ -1682,13 +1464,12 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Access
       - Codes
-      - Access
+      - :access
       - Code
     post:
-      summary: Add Events  Access Codes Access Code
+      summary: Post Events Access Codes Access Code
       description: Please use https://www.eventbrite.com/developer/v3/endpoints/cross_event_discounts/#ebapi-get-discounts-discount-id
       operationId: postEventsAccessCodesAccessCode
       x-api-path-slug: eventsidaccess-codesaccess-code-id-post
@@ -1697,14 +1478,13 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Access
       - Codes
-      - Access
+      - :access
       - Code
   /events/{id}/transfers/:
     get:
-      summary: Get Events  Transfers
+      summary: Get Events Transfers
       description: Returns a list of transfers for the event.
       operationId: getEventsTransfers
       x-api-path-slug: eventsidtransfers-get
@@ -1718,11 +1498,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Transfers
   /events/{id}/teams/:
     get:
-      summary: Get Events  Teams
+      summary: Get Events Teams
       description: Returns a list of attendee-team for the event.
       operationId: getEventsTeams
       x-api-path-slug: eventsidteams-get
@@ -1731,11 +1510,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Teams
   /events/{id}/teams/{id}/:
     get:
-      summary: Get Events  Teams
+      summary: Get Events Teams
       description: Returns information for a single attendee-team.
       operationId: getEventsTeams
       x-api-path-slug: eventsidteamsid-get
@@ -1744,11 +1522,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Teams
   /events/{id}/teams/{id}/attendees/:
     get:
-      summary: Get Events  Teams  Attendees
+      summary: Get Events Teams Attendees
       description: Returns attendee for a single attendee-team.
       operationId: getEventsTeamsAttendees
       x-api-path-slug: eventsidteamsidattendees-get
@@ -1757,13 +1534,11 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Teams
-      - ""
       - Attendees
   /events/:event_id/ticket_groups/:
     get:
-      summary: Get Events Event  Ticket Groups
+      summary: Get Events Event Ticket Groups
       description: |-
         Get the list of ticket_group for the event with the specified :event_id.
         By default, only the ticket groups that are live are shown.
@@ -1780,13 +1555,12 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Ticket
       - Groups
   /events/:event_id/ticket_classes/:ticket_class_id/ticket_groups/:ticket_group_id/:
     post:
-      summary: Add Events Event  Ticket Classes Ticket Class  Ticket Groups Ticket
+      summary: Post Events Event Ticket Classes Ticket Class Ticket Groups Ticket
         Group
       description: Add the Ticket Class with the specified :ticket_class_id that belongs
         to the event with :event_id to the Ticket Group identified by :ticket_group_id.
@@ -1797,19 +1571,17 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Ticket
       - Classes
-      - Ticket
+      - :ticket
       - Class
-      - ""
       - Ticket
       - Groups
-      - Ticket
+      - :ticket
       - Group
     delete:
-      summary: Delete Events Event  Ticket Classes Ticket Class  Ticket Groups Ticket
+      summary: Delete Events Event Ticket Classes Ticket Class Ticket Groups Ticket
         Group
       description: Remove the Ticket Class with the specified :ticket_class_id that
         belongs to the event with :event_id from the Ticket Group identified by :ticket_group_id.
@@ -1820,20 +1592,18 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Ticket
       - Classes
-      - Ticket
+      - :ticket
       - Class
-      - ""
       - Ticket
       - Groups
-      - Ticket
+      - :ticket
       - Group
   /events/:event_id/ticket_classes/:ticket_class_id/ticket_groups/:
     get:
-      summary: Get Events Event  Ticket Classes Ticket Class  Ticket Groups
+      summary: Get Events Event Ticket Classes Ticket Class Ticket Groups
       description: |-
         Get the Ticket Groups for Ticket Class with the specified :ticket_class_id that belongs to the event with :event_id.
         By default, only the ticket groups that are live are shown.
@@ -1850,18 +1620,16 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Ticket
       - Classes
-      - Ticket
+      - :ticket
       - Class
-      - ""
       - Ticket
       - Groups
   /events/{id}/ticket_buyer_settings/:
     get:
-      summary: Get Events  Ticket Buyer Settings
+      summary: Get Events Ticket Buyer Settings
       description: Returns a ticket_buyer_settings for an event.
       operationId: getEventsTicketBuyerSettings
       x-api-path-slug: eventsidticket-buyer-settings-get
@@ -1870,12 +1638,11 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Ticket
       - Buyer
       - Settings
     post:
-      summary: Add Events  Ticket Buyer Settings
+      summary: Post Events Ticket Buyer Settings
       description: Updates the ticket buyer settings for an event. Returns a ticket_buyer_settings.
       operationId: postEventsTicketBuyerSettings
       x-api-path-slug: eventsidticket-buyer-settings-post
@@ -1901,7 +1668,6 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Ticket
       - Buyer
       - Settings
@@ -1995,7 +1761,7 @@ paths:
       - Orders
   /users/:user_id/organizations/:
     get:
-      summary: Get Users User  Organizations
+      summary: Get Users User Organizations
       description: |-
         Returns a continuated list of organizations
         accessible to the current user.
@@ -2006,12 +1772,11 @@ paths:
           description: OK
       tags:
       - Users
-      - User
-      - ""
+      - :user
       - Organizations
   /organizers/:
     post:
-      summary: Add Organizers
+      summary: Post Organizers
       description: Makes a new organizer. Returns an organizer as organizer.
       operationId: postOrganizers
       x-api-path-slug: organizers-post
@@ -2065,7 +1830,7 @@ paths:
       tags:
       - Organizers
     post:
-      summary: Add Organizers
+      summary: Post Organizers
       description: Updates an organizer and returns it as as organizer.
       operationId: postOrganizers
       x-api-path-slug: organizersid-post
@@ -2109,7 +1874,7 @@ paths:
       - Organizers
   /organizers/{id}/events/:
     get:
-      summary: Get Organizers  Events
+      summary: Get Organizers Events
       description: Gets events of the organizer.
       operationId: getOrganizersEvents
       x-api-path-slug: organizersidevents-get
@@ -2140,7 +1905,6 @@ paths:
           description: OK
       tags:
       - Organizers
-      - ""
       - Events
   /pricing/fee_rates/:
     get:
@@ -2198,7 +1962,7 @@ paths:
       - Refund
       - Requests
     post:
-      summary: Add Refund Requests
+      summary: Post Refund Requests
       description: Update a refund-request for a specific order. Each element in items
         is a refund-item
       operationId: postRefundRequests
@@ -2235,7 +1999,7 @@ paths:
       - Requests
   /refund_requests/:
     post:
-      summary: Add Refund Requests
+      summary: Post Refund Requests
       description: Creates a refund-request for a specific order. Each element in
         items is a refund-item
       operationId: postRefundRequests
@@ -2436,7 +2200,7 @@ paths:
       tags:
       - Ticket
       - Groups
-      - Ticket
+      - :ticket
       - Group
     delete:
       summary: Delete Ticket Groups Ticket Group
@@ -2451,10 +2215,10 @@ paths:
       tags:
       - Ticket
       - Groups
-      - Ticket
+      - :ticket
       - Group
     post:
-      summary: Add Ticket Groups Ticket Group
+      summary: Post Ticket Groups Ticket Group
       description: Updates the ticket group with the specified :ticket_group_id. Returns
         the updated ticket_group.
       operationId: postTicketGroupsTicketGroup
@@ -2478,11 +2242,11 @@ paths:
       tags:
       - Ticket
       - Groups
-      - Ticket
+      - :ticket
       - Group
   /ticket_groups/:
     post:
-      summary: Add Ticket Groups
+      summary: Post Ticket Groups
       description: |-
         Creates a ticket group and returns the created ticket_group.
         Only up to 200 live ticket groups may be created; those with archived or deleted status are not taken into account.
@@ -2509,7 +2273,7 @@ paths:
       - Groups
   /tracking_beacons/:
     post:
-      summary: Add Tracking Beacons
+      summary: Post Tracking Beacons
       description: Makes a new tracking beacon. Returns an tracking_beacon as tracking_beacon.
         Either event_id or user_id is required for each tracking beacon. If the event_id
         is provided, the tracking pixel will fire only for that event. If the user_id
@@ -2565,10 +2329,10 @@ paths:
       tags:
       - Tracking
       - Beacons
-      - Tracking
+      - :tracking
       - Beacons
     post:
-      summary: Add Tracking Beacons Tracking Beacons
+      summary: Post Tracking Beacons Tracking Beacons
       description: Updates the tracking_beacons with the specified :tracking_beacons_id.
         Though event_id and user_id are not individually required, it is a requirement
         to have a tracking beacon where either one must exist. Returns an tracking_beacon
@@ -2606,7 +2370,7 @@ paths:
       tags:
       - Tracking
       - Beacons
-      - Tracking
+      - :tracking
       - Beacons
     delete:
       summary: Delete Tracking Beacons Tracking Beacons
@@ -2619,11 +2383,11 @@ paths:
       tags:
       - Tracking
       - Beacons
-      - Tracking
+      - :tracking
       - Beacons
   /events/:event_id/tracking_beacons/:
     get:
-      summary: Get Events Event  Tracking Beacons
+      summary: Get Events Event Tracking Beacons
       description: Returns the list of tracking_beacon for the event :event_id
       operationId: getEventsEventTrackingBeacons
       x-api-path-slug: eventsevent-idtracking-beacons-get
@@ -2637,13 +2401,12 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Tracking
       - Beacons
   /users/:user_id/tracking_beacons/:
     get:
-      summary: Get Users User  Tracking Beacons
+      summary: Get Users User Tracking Beacons
       description: Returns the list of tracking_beacon for the user :user_id
       operationId: getUsersUserTrackingBeacons
       x-api-path-slug: usersuser-idtracking-beacons-get
@@ -2657,8 +2420,7 @@ paths:
           description: OK
       tags:
       - Users
-      - User
-      - ""
+      - :user
       - Tracking
       - Beacons
   /users/{id}/:
@@ -2675,7 +2437,7 @@ paths:
       - Users
   /users/{id}/orders/:
     get:
-      summary: Get Users  Orders
+      summary: Get Users Orders
       description: Returns a paginated response of orders, under the key orders, of
         all orders the user has placed (i.e. where the user was the person buying
         the tickets).
@@ -2690,11 +2452,10 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Orders
   /users/{id}/organizers/:
     get:
-      summary: Get Users  Organizers
+      summary: Get Users Organizers
       description: Returns a paginated response of organizer objects that are owned
         by the user.
       operationId: getUsersOrganizers
@@ -2710,11 +2471,10 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Organizers
   /users/{id}/owned_events/:
     get:
-      summary: Get Users  Owned Events
+      summary: Get Users Owned Events
       description: |-
         Returns a paginated response of events, under
         the key events, of all events the user owns (i.e. events they are organising)
@@ -2740,12 +2500,11 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Owned
       - Events
   /users/{id}/events/:
     get:
-      summary: Get Users  Events
+      summary: Get Users Events
       description: Returns a paginated response of events, under the key events, of
         all events the user has access to
       operationId: getUsersEvents
@@ -2795,11 +2554,10 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Events
   /organizations/{id}/events/:
     post:
-      summary: Add Organizations  Events
+      summary: Post Organizations Events
       description: Creates new events objects under an organization and returns it
         as event.
       operationId: postOrganizationsEvents
@@ -2920,11 +2678,10 @@ paths:
           description: OK
       tags:
       - Organizations
-      - ""
       - Events
   /users/{id}/venues/:
     get:
-      summary: Get Users  Venues
+      summary: Get Users Venues
       description: Returns a paginated response of venue objects that are owned by
         the user.
       operationId: getUsersVenues
@@ -2934,11 +2691,10 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Venues
   /organizations/{id}/venues/:
     post:
-      summary: Add Organizations  Venues
+      summary: Post Organizations Venues
       description: Creates new venue objects under an organization and returns it
         as venue.
       operationId: postOrganizationsVenues
@@ -3002,11 +2758,10 @@ paths:
           description: OK
       tags:
       - Organizations
-      - ""
       - Venues
   /users/{id}/owned_event_attendees/:
     get:
-      summary: Get Users  Owned Event Attendees
+      summary: Get Users Owned Event Attendees
       description: |-
         Returns a paginated response of attendees,
         under the key attendees, of attendees visiting any of the events the user owns
@@ -3027,13 +2782,12 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Owned
       - Event
       - Attendees
   /users/{id}/owned_event_orders/:
     get:
-      summary: Get Users  Owned Event Orders
+      summary: Get Users Owned Event Orders
       description: |-
         Returns a paginated response of orders,
         under the key orders, of orders placed against any of the events the user owns
@@ -3063,13 +2817,12 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Owned
       - Event
       - Orders
   /users/{id}/contact_lists/:
     get:
-      summary: Get Users  Contact Lists
+      summary: Get Users Contact Lists
       description: |-
         Returns a list of contact_list that the user owns as the key
         contact_lists.
@@ -3080,11 +2833,10 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Contact
       - Lists
     post:
-      summary: Add Users  Contact Lists
+      summary: Post Users Contact Lists
       description: |-
         Makes a new contact_list for the user and returns it as
         contact_list.
@@ -3100,12 +2852,11 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Contact
       - Lists
   /users/{id}/contact_lists/:contact_list_id/:
     get:
-      summary: Get Users  Contact Lists Contact List
+      summary: Get Users Contact Lists Contact List
       description: Gets a user&#8217;s contact_list by ID as contact_list.
       operationId: getUsersContactListsContactList
       x-api-path-slug: usersidcontact-listscontact-list-id-get
@@ -3114,13 +2865,12 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Contact
       - Lists
-      - Contact
+      - :contact
       - List
     post:
-      summary: Add Users  Contact Lists Contact List
+      summary: Post Users Contact Lists Contact List
       description: Updates the contact_list and returns it as contact_list.
       operationId: postUsersContactListsContactList
       x-api-path-slug: usersidcontact-listscontact-list-id-post
@@ -3134,13 +2884,12 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Contact
       - Lists
-      - Contact
+      - :contact
       - List
     delete:
-      summary: Delete Users  Contact Lists Contact List
+      summary: Delete Users Contact Lists Contact List
       description: 'Deletes the contact list. Returns {&quot;deleted&quot;: true}.'
       operationId: deleteUsersContactListsContactList
       x-api-path-slug: usersidcontact-listscontact-list-id-delete
@@ -3149,14 +2898,13 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Contact
       - Lists
-      - Contact
+      - :contact
       - List
   /users/{id}/contact_lists/:contact_list_id/contacts/:
     get:
-      summary: Get Users  Contact Lists Contact List  Contacts
+      summary: Get Users Contact Lists Contact List Contacts
       description: |-
         Returns the contacts on the contact list
         as contacts.
@@ -3167,15 +2915,13 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Contact
       - Lists
-      - Contact
+      - :contact
       - List
-      - ""
       - Contacts
     post:
-      summary: Add Users  Contact Lists Contact List  Contacts
+      summary: Post Users Contact Lists Contact List Contacts
       description: 'Adds a new contact to the contact list. Returns {&quot;created&quot;:
         true}.'
       operationId: postUsersContactListsContactListContacts
@@ -3198,15 +2944,13 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Contact
       - Lists
-      - Contact
+      - :contact
       - List
-      - ""
       - Contacts
     delete:
-      summary: Delete Users  Contact Lists Contact List  Contacts
+      summary: Delete Users Contact Lists Contact List Contacts
       description: |-
         Deletes the specified contact from the contact list.
         Returns {&quot;deleted&quot;: true}.
@@ -3222,16 +2966,14 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Contact
       - Lists
-      - Contact
+      - :contact
       - List
-      - ""
       - Contacts
   /users/{id}/bookmarks/:
     get:
-      summary: Get Users  Bookmarks
+      summary: Get Users Bookmarks
       description: Gets all the user&#8217;s saved events.
       operationId: getUsersBookmarks
       x-api-path-slug: usersidbookmarks-get
@@ -3245,11 +2987,10 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Bookmarks
   /users/{id}/bookmarks/save/:
     post:
-      summary: Add Users  Bookmarks Save
+      summary: Post Users Bookmarks Save
       description: 'Adds a new bookmark for the user. Returns {&quot;created&quot;:
         true}.'
       operationId: postUsersBookmarksSave
@@ -3272,12 +3013,11 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Bookmarks
       - Save
   /users/{id}/bookmarks/unsave/:
     post:
-      summary: Add Users  Bookmarks Unsave
+      summary: Post Users Bookmarks Unsave
       description: 'Removes the specified bookmark from the event for the user. Returns
         {&quot;deleted&quot;: true}.'
       operationId: postUsersBookmarksUnsave
@@ -3300,12 +3040,11 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Bookmarks
       - Unsave
   /users/:user_id/ticket_groups/:
     get:
-      summary: Get Users User  Ticket Groups
+      summary: Get Users User Ticket Groups
       description: |-
         Returns a paginated response of ticket_group for the specified user.
         The alias me (/users/me/) may be used to refer to the currently authenticated user.
@@ -3322,13 +3061,12 @@ paths:
           description: OK
       tags:
       - Users
-      - User
-      - ""
+      - :user
       - Ticket
       - Groups
   /users/:user_id/events/:event_id/ticket_classes/:ticket_class_id/ticket_groups/:
     post:
-      summary: Add Users User  Events Event  Ticket Classes Ticket Class  Ticket Groups
+      summary: Post Users User Events Event Ticket Classes Ticket Class Ticket Groups
       description: |-
         Add the Ticket Class with the specified :ticket_class_id of the event with :event_id that
         belongs to the user with :user_id to many Ticket Groups specified with ticket_group_ids.
@@ -3345,21 +3083,18 @@ paths:
           description: OK
       tags:
       - Users
-      - User
-      - ""
+      - :user
       - Events
-      - Event
-      - ""
+      - :event
       - Ticket
       - Classes
-      - Ticket
+      - :ticket
       - Class
-      - ""
       - Ticket
       - Groups
   /users/:user_id/discounts/:
     get:
-      summary: Get Users User  Discounts
+      summary: Get Users User Discounts
       description: |-
         Returns a paginated response of cross_event_discount for the specified user.
         This operation is only supported for the currently authenticated user. The alias me (/users/me/) may be used.
@@ -3405,12 +3140,11 @@ paths:
           description: OK
       tags:
       - Users
-      - User
-      - ""
+      - :user
       - Discounts
   /users/{id}/assortment/:
     get:
-      summary: Get Users  Assortment
+      summary: Get Users Assortment
       description: Retrieve the assortment for the user.
       operationId: getUsersAssortment
       x-api-path-slug: usersidassortment-get
@@ -3419,10 +3153,9 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Assortment
     post:
-      summary: Add Users  Assortment
+      summary: Post Users Assortment
       description: |-
         Set a user&#8217;s assortment and returns the assortment for the specified
         user.
@@ -3438,7 +3171,6 @@ paths:
           description: OK
       tags:
       - Users
-      - ""
       - Assortment
   /venues/{id}/:
     get:
@@ -3452,7 +3184,7 @@ paths:
       tags:
       - Venues
     post:
-      summary: Add Venues
+      summary: Post Venues
       description: Updates a venue and returns it as an object.
       operationId: postVenues
       x-api-path-slug: venuesid-post

@@ -3,11 +3,11 @@ swagger: "2.0"
 x-collection-name: Eventbrite
 x-complete: 0
 info:
-  title: Eventbrite Get Events  Display Settings
+  title: Eventbrite Get Events Display Settings
   description: Retrieves the display settings for an event.
   version: 1.0.0
-host: www.eventbriteapi.com
-basePath: /v3
+host: www.eventbrite.com
+basePath: /%7Bdata-type%7D/
 schemes:
 - http
 produces:
@@ -17,7 +17,7 @@ consumes:
 paths:
   /events/:
     post:
-      summary: Add Events
+      summary: Post Events
       description: Makes a new event, and returns an event for the specified event.
       operationId: postEvents
       x-api-path-slug: events-post
@@ -141,139 +141,6 @@ paths:
           description: OK
       tags:
       - Events
-  /events/search/:
-    get:
-      summary: Get Events Search
-      description: Allows you to retrieve a paginated response of public event objects
-        from across Eventbrite?s directory, regardless of which user owns the event.
-      operationId: getEventsSearch
-      x-api-path-slug: eventssearch-get
-      parameters:
-      - in: query
-        name: categories
-        description: Only return events under the given category IDs
-        type: query
-      - in: query
-        name: date_modified.keyword
-        description: Only return events with modified dates within the given keyword
-          date range
-        type: query
-      - in: query
-        name: date_modified.range_end
-        description: Only return events with modified dates before the given UTC date
-        type: query
-      - in: query
-        name: date_modified.range_start
-        description: Only return events with modified dates after the given UTC date
-        type: query
-      - in: query
-        name: formats
-        description: Only return events with the given format IDs
-        type: query
-      - in: query
-        name: high_affinity_categories
-        description: Make search results prefer events in these categories
-        type: query
-      - in: query
-        name: include_all_series_instances
-        description: Boolean for whether or not you want to see all instances of repeating
-          events in search results
-        type: query
-      - in: query
-        name: include_unavailable_events
-        description: Boolean for whether or not you want to see events without tickets
-          on sale
-        type: query
-      - in: query
-        name: incorporate_user_affinities
-        description: Incorporate additional information from the user&#8217;s historic
-          preferences
-        type: query
-      - in: query
-        name: location.address
-        description: The address of the location you want to search for events around
-        type: query
-      - in: query
-        name: location.latitude
-        description: The latitude of of the location you want to search for events
-          around
-        type: query
-      - in: query
-        name: location.longitude
-        description: The longitude of the location you want to search for events around
-        type: query
-      - in: query
-        name: location.viewport.northeast.latitude
-        description: The latitude of the northeast corner of a viewport
-        type: query
-      - in: query
-        name: location.viewport.northeast.longitude
-        description: The longitude of the northeast corner of a viewport
-        type: query
-      - in: query
-        name: location.viewport.southwest.latitude
-        description: The latitude of the southwest corner of a viewport
-        type: query
-      - in: query
-        name: location.viewport.southwest.longitude
-        description: The longitude of the southwest corner of a viewport
-        type: query
-      - in: query
-        name: location.within
-        description: The distance you want to search around the given location
-        type: query
-      - in: query
-        name: organizer.id
-        description: Only return events organized by the given Organizer ID
-        type: query
-      - in: query
-        name: price
-        description: Only return events that are &#8220;free&#8221; or &#8220;paid&#8221;
-        type: query
-      - in: query
-        name: q
-        description: Return events matching the given keywords
-      - in: query
-        name: search_type
-        description: Use the preconfigured settings for this type of search - Current
-          option is &#8220;promoted&#8221;
-        type: query
-      - in: query
-        name: sort_by
-        description: Parameter you want to sort by - options are &#8220;date&#8221;,
-          &#8220;distance&#8221; and &#8220;best&#8221;
-        type: query
-      - in: query
-        name: start_date.keyword
-        description: Only return events with start dates within the given keyword
-          date range
-        type: query
-      - in: query
-        name: start_date.range_end
-        description: Only return events with start dates before the given date
-        type: query
-      - in: query
-        name: start_date.range_start
-        description: Only return events with start dates after the given date
-        type: query
-      - in: query
-        name: subcategories
-        description: Only return events under the given subcategory IDs
-        type: query
-      - in: query
-        name: tracking_code
-        description: Append the given tracking_code to the event URLs returned
-        type: query
-      - in: query
-        name: user.id
-        description: Only return events owned by the given User ID
-        type: query
-      responses:
-        200:
-          description: OK
-      tags:
-      - Events
-      - Search
   /events/{id}:
     get:
       summary: Get Events
@@ -292,7 +159,7 @@ paths:
       tags:
       - Events
     post:
-      summary: Add Events
+      summary: Post Events
       description: Updates an event. Returns an event for the specified event.
       operationId: postEvents
       x-api-path-slug: eventsid-post
@@ -309,19 +176,6 @@ paths:
           description: OK
       tags:
       - Events
-  /categories/:
-    get:
-      summary: Get Categories
-      description: |-
-        Returns a list of category as categories, including
-        subcategories nested.
-      operationId: getCategories
-      x-api-path-slug: categories-get
-      responses:
-        200:
-          description: OK
-      tags:
-      - Categories
   /categories/{id}/:
     get:
       summary: Get Categories
@@ -425,7 +279,7 @@ paths:
       - Checkout
       - Settings
     post:
-      summary: Add Checkout Settings
+      summary: Post Checkout Settings
       description: Creates a new checkout_settings object belonging to the current
         user. Two common settings are Eventbrite Payment Processing ( checkout_method
         = &#8220;eventbrite&#8221; ) and PayPal ( checkout_method = &#8220;paypal&#8221;
@@ -451,11 +305,11 @@ paths:
       tags:
       - Checkout
       - Settings
-      - Checkout
+      - :checkout
       - Settings
   /events/:event_id/checkout_settings/:
     get:
-      summary: Get Events Event  Checkout Settings
+      summary: Get Events Event Checkout Settings
       description: Gets and returns a list of checkout_settings associated with a
         given event by its event_id.
       operationId: getEventsEventCheckoutSettings
@@ -465,12 +319,11 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Checkout
       - Settings
     post:
-      summary: Add Events Event  Checkout Settings
+      summary: Post Events Event Checkout Settings
       description: Associate a single or set of checkout_settings with a given event
         by its event_id. This does not add more checkout settings to the event, but
         instead replaces all checkout settings for the event with the one(s) submitted.
@@ -489,13 +342,12 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Checkout
       - Settings
   /events/:event_id/payout_settings/:
     get:
-      summary: Get Events Event  Payout Settings
+      summary: Get Events Event Payout Settings
       description: Gets and returns the payout_settings (user instrument ID) associated
         with a given event by its event_id.
       operationId: getEventsEventPayoutSettings
@@ -505,12 +357,11 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Payout
       - Settings
     post:
-      summary: Add Events Event  Payout Settings
+      summary: Post Events Event Payout Settings
       description: Associate a payout user instrument ID with a given event, or clear
         the association by passing a null value for the user instrument ID.
       operationId: postEventsEventPayoutSettings
@@ -525,8 +376,7 @@ paths:
           description: OK
       tags:
       - Events
-      - Event
-      - ""
+      - :event
       - Payout
       - Settings
   /discounts/:discount_id/:
@@ -540,9 +390,9 @@ paths:
           description: OK
       tags:
       - Discounts
-      - Discount
+      - :discount
     post:
-      summary: Add Discounts Discount
+      summary: Post Discounts Discount
       description: Updates the discount with the specified :discount_id. Returns the
         updated cross_event_discount. The fields sent are the ones that are going
         to be updated, the fields that are not sent will be unchanged. The same conditions
@@ -595,7 +445,7 @@ paths:
           description: OK
       tags:
       - Discounts
-      - Discount
+      - :discount
     delete:
       summary: Delete Discounts Discount
       description: |-
@@ -608,10 +458,10 @@ paths:
           description: OK
       tags:
       - Discounts
-      - Discount
+      - :discount
   /discounts/:
     post:
-      summary: Add Discounts
+      summary: Post Discounts
       description: Creates a discount. Returns the created cross_event_discount.
       operationId: postDiscounts
       x-api-path-slug: discounts-post
@@ -688,7 +538,7 @@ paths:
       tags:
       - Events
     post:
-      summary: Add Events
+      summary: Post Events
       description: |-
         Updates an event. Returns an event for the specified event. Does not support updating a repeating event
         series parent (see POST /series/:id/).
@@ -824,7 +674,7 @@ paths:
       - Events
   /events/{id}/publish/:
     post:
-      summary: Add Events  Publish
+      summary: Post Events Publish
       description: |-
         Publishes an event if it has not already been deleted. In order for publish to be permitted, the event must have all
         necessary information, including a name and description, an organizer, at least one ticket, and valid payment options.
@@ -837,11 +687,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Publish
   /events/{id}/unpublish/:
     post:
-      summary: Add Events  Unpublish
+      summary: Post Events Unpublish
       description: |-
         Unpublishes an event. In order for a free event to be unpublished, it must not have any pending or completed orders,
         even if the event is in the past. In order for a paid event to be unpublished, it must not have any pending or completed
@@ -854,11 +703,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Unpublish
   /events/{id}/cancel/:
     post:
-      summary: Add Events  Cancel
+      summary: Post Events Cancel
       description: |-
         Cancels an event if it has not already been deleted. In order for cancel to be permitted, there must be no pending or
         completed orders. Returns a boolean indicating success or failure of the cancel.
@@ -869,11 +717,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Cancel
   /events/{id}/copy/:
     post:
-      summary: Add Events  Copy
+      summary: Post Events Copy
       description: Creates a duplicate version of the event being copied. Returns
         the event object for the newly created event.
       operationId: postEventsCopy
@@ -900,11 +747,10 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Copy
   /events/{id}/display_settings/:
     get:
-      summary: Get Events  Display Settings
+      summary: Get Events Display Settings
       description: Retrieves the display settings for an event.
       operationId: getEventsDisplaySettings
       x-api-path-slug: eventsiddisplay-settings-get
@@ -913,7 +759,6 @@ paths:
           description: OK
       tags:
       - Events
-      - ""
       - Display
       - Settings
 x-streamrank:

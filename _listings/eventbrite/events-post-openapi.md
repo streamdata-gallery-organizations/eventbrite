@@ -3,11 +3,11 @@ swagger: "2.0"
 x-collection-name: Eventbrite
 x-complete: 0
 info:
-  title: Eventbrite Add Events
+  title: Eventbrite Post Events
   description: Makes a new event, and returns an event for the specified event.
   version: 1.0.0
-host: www.eventbriteapi.com
-basePath: /v3
+host: www.eventbrite.com
+basePath: /%7Bdata-type%7D/
 schemes:
 - http
 produces:
@@ -17,7 +17,7 @@ consumes:
 paths:
   /events/:
     post:
-      summary: Add Events
+      summary: Post Events
       description: Makes a new event, and returns an event for the specified event.
       operationId: postEvents
       x-api-path-slug: events-post
