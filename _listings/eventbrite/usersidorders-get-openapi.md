@@ -527,10 +527,10 @@ paths:
   /events/{id}/:
     get:
       summary: Get Events
-      description: "Returns an event for the specified event. Many of Eventbrite\u2019s
-        API use cases revolve around pulling details\nof a specific event within an
-        Eventbrite account. Does not support fetching a repeating event series parent\n(see
-        GET /series/:id/)."
+      description: |-
+        Returns an event for the specified event. Many of Eventbrite???s API use cases revolve around pulling details
+        of a specific event within an Eventbrite account. Does not support fetching a repeating event series parent
+        (see GET /series/:id/).
       operationId: getEvents
       x-api-path-slug: eventsid-get
       responses:

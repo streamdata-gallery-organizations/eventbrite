@@ -530,10 +530,10 @@ paths:
   /events/{id}/:
     get:
       summary: Get Events
-      description: "Returns an event for the specified event. Many of Eventbrite\u2019s
-        API use cases revolve around pulling details\nof a specific event within an
-        Eventbrite account. Does not support fetching a repeating event series parent\n(see
-        GET /series/:id/)."
+      description: |-
+        Returns an event for the specified event. Many of Eventbrite???s API use cases revolve around pulling details
+        of a specific event within an Eventbrite account. Does not support fetching a repeating event series parent
+        (see GET /series/:id/).
       operationId: getEvents
       x-api-path-slug: eventsid-get
       responses:
@@ -3572,7 +3572,7 @@ paths:
         description: 2-letter country code, according to the ISO 3166 format
       - in: query
         name: count_only
-        description: Only return the total number of events (true or false)
+        description: Only return the total number of events (???true??? or ???false???)
       - in: query
         name: data-type
         description: xml or json data-types are supported
@@ -3592,11 +3592,11 @@ paths:
         description: The search keywords
       - in: query
         name: latitude
-        description: If within is set you can limit your search to wgs84 coordinates
+        description: If ???within??? is set you can limit your search to wgs84 coordinates
           (latitude, longitude)
       - in: query
         name: longitude
-        description: If within is set you can limit your search to wgs84 coordinates
+        description: If ???within??? is set you can limit your search to wgs84 coordinates
           (latitude, longitude)
       - in: query
         name: max
@@ -3615,21 +3615,23 @@ paths:
         description: The venue state/province/county/territory depending on the country
       - in: query
         name: since_id
-        description: Returns events with id greater than since_id value
+        description: Returns events with id greater than ???since_id??? value
       - in: query
         name: sort_by
-        description: Sort the list of events by id, date, name, city
+        description: Sort the list of events by ???id???, ???date???, ???name???,
+          ???city???
       - in: query
         name: tracking_link
         description: The tracking link code to add to the event URLs
       - in: query
         name: within
-        description: If within is set and the city or zipcode resolve to a specific
-          geolocation, the search will be restricted to the specified within radius
+        description: If ???within??? is set and the ???city??? or ???zipcode??? resolve
+          to a specific geolocation, the search will be restricted to the specified
+          within radius
       - in: query
         name: within_unit
-        description: 'If within is set, you can specify the unit to use: M for miles,
-          or K for kilometers'
+        description: 'If within is set, you can specify the unit to use: ???M??? for
+          miles, or ???K??? for kilometers'
       responses:
         200:
           description: OK
@@ -3858,8 +3860,8 @@ paths:
       parameters:
       - in: query
         name: asc_or_desc
-        description: Valid options include asc or results in ascending order or desc
-          or descending order based on event start_date
+        description: Valid options include ???asc??? or results in ascending order
+          or ???desc??? or descending order based on event start_date
       - in: query
         name: data-type
         description: xml or json data-types are supported
@@ -4015,9 +4017,9 @@ paths:
         description: Allows for paging through the results of a query
       - in: query
         name: show_full_barcodes
-        description: If set to true, it will return all barcodes associates with the
-          attendee, plus the barcode status, device used, attendee_id, and barcode
-          number
+        description: If set to ???true???, it will return all barcodes associates
+          with the attendee, plus the barcode status, device used, attendee_id, and
+          barcode number
       responses:
         200:
           description: OK
