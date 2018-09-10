@@ -8,8 +8,8 @@ info:
     Returns a single page response with a key of countries,
     containing a list of countries.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

@@ -8,8 +8,8 @@ info:
     Deletes an event if the delete is permitted. In order for a delete to be permitted, there must be no pending or
     completed orders. Returns a boolean indicating success or failure of the delete.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

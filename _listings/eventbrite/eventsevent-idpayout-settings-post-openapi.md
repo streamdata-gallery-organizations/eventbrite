@@ -7,8 +7,8 @@ info:
   description: Associate a payout user instrument ID with a given event, or clear
     the association by passing a null value for the user instrument ID.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

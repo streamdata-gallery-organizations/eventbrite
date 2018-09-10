@@ -8,8 +8,8 @@ info:
     Deletes the ticket_group with the specified :ticket_group_id.
     The status of the ticket group is changed to deleted.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

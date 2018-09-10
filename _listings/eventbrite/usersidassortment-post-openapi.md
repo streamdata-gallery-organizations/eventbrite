@@ -8,8 +8,8 @@ info:
     Set a user&#8217;s assortment and returns the assortment for the specified
     user.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

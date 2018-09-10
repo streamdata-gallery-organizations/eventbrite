@@ -6,8 +6,8 @@ info:
   title: Eventbrite Get Categories
   description: Gets a category by ID as category.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

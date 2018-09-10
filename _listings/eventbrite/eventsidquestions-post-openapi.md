@@ -7,8 +7,8 @@ info:
   description: Creates a new question; returns the result as a question as the key
     question.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

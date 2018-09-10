@@ -7,8 +7,8 @@ info:
   description: This method updates an existing venue. Only the fields passed as arguments
     will be modified. It returns the ID of the updated venue.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:
@@ -3545,12 +3545,12 @@ paths:
       tags:
       - Series
       - Events
-  /event_search:
+  /events/search/:
     get:
-      summary: Get Event Search
+      summary: Event Search
       description: This method uses our search index to find publicly listed events.
       operationId: Get_event_search_
-      x-api-path-slug: event-search-get
+      x-api-path-slug: eventssearch-get
       parameters:
       - in: query
         name: address
@@ -3607,6 +3607,11 @@ paths:
       - in: query
         name: postal_code
         description: The postal/zip code of the venue
+      - in: query
+        name: q
+        description: The query
+        type: string
+        format: string
       - in: query
         name: region
         description: The venue state/province/county/territory depending on the country

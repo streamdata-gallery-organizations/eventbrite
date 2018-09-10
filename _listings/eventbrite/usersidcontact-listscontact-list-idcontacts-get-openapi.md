@@ -8,8 +8,8 @@ info:
     Returns the contacts on the contact list
     as contacts.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

@@ -8,8 +8,8 @@ info:
     Creates a ticket group and returns the created ticket_group.
     Only up to 200 live ticket groups may be created; those with archived or deleted status are not taken into account.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

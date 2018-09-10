@@ -9,8 +9,8 @@ info:
     under the key attendees, of attendees visiting any of the events the user owns
     (events that would be returned from /users/:id/owned_events/)
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

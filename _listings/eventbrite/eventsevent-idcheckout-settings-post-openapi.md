@@ -9,8 +9,8 @@ info:
     replaces all checkout settings for the event with the one(s) submitted. The JSON
     post body is a string list of the checkout_settings IDs you want to associate.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

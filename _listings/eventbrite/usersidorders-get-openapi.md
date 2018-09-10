@@ -7,8 +7,8 @@ info:
   description: Returns a paginated response of orders, under the key orders, of all
     orders the user has placed (i.e. where the user was the person buying the tickets).
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

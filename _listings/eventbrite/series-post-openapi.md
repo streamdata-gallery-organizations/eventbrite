@@ -7,8 +7,8 @@ info:
   description: Creates a new repeating event series. The POST data must include information
     for at least one event date in the series.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

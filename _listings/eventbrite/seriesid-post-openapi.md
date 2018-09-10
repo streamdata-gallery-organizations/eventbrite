@@ -9,8 +9,8 @@ info:
     existing event dates in the series. In order for a series date to be deleted or updated, there must be no pending or
     completed orders for that date.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

@@ -6,8 +6,8 @@ info:
   title: Eventbrite Post Discounts
   description: Creates a discount. Returns the created cross_event_discount.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

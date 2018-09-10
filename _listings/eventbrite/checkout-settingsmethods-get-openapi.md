@@ -7,8 +7,8 @@ info:
   description: Get the available checkout methods to do payments given a country and
     a currency.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

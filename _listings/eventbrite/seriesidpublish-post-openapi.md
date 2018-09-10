@@ -10,8 +10,8 @@ info:
     at least one ticket, and valid payment options. This API endpoint will return argument errors for event fields that
     fail to validate the publish requirements. Returns a boolean indicating success or failure of the publish.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

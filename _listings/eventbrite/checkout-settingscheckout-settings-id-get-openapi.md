@@ -6,8 +6,8 @@ info:
   title: Eventbrite Get Checkout Settings Checkout Settings
   description: Get a specific checkout_settings object by ID
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

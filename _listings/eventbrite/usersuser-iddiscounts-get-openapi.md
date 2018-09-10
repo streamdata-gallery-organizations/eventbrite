@@ -8,8 +8,8 @@ info:
     Returns a paginated response of cross_event_discount for the specified user.
     This operation is only supported for the currently authenticated user. The alias me (/users/me/) may be used.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

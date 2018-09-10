@@ -8,8 +8,8 @@ info:
   description: Remove the Ticket Class with the specified :ticket_class_id that belongs
     to the event with :event_id from the Ticket Group identified by :ticket_group_id.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

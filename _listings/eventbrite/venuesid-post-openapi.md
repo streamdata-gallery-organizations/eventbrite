@@ -6,8 +6,8 @@ info:
   title: Eventbrite Post Venues
   description: Updates a venue and returns it as an object.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

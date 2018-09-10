@@ -6,8 +6,8 @@ info:
   title: Eventbrite Get Events Teams
   description: Returns information for a single attendee-team.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

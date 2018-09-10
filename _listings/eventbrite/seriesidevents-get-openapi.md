@@ -6,8 +6,8 @@ info:
   title: Eventbrite Get Series Events
   description: Returns all of the events that belong to this repeating event series.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

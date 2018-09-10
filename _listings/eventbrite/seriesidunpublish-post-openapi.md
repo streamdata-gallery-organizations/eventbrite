@@ -11,8 +11,8 @@ info:
     except that completed orders for past dates that have been completed and paid out do not prevent an unpublish. Returns
     a boolean indicating success or failure of the unpublish.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

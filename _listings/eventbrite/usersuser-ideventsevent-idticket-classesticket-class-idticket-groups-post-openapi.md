@@ -10,8 +10,8 @@ info:
     belongs to the user with :user_id to many Ticket Groups specified with ticket_group_ids.
     If the list provided is empty, remove this ticket class from every ticket group.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

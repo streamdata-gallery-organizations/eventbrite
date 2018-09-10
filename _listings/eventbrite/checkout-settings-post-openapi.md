@@ -10,8 +10,8 @@ info:
     you must provide the country and currency proceeds from the event should be paid
     to.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

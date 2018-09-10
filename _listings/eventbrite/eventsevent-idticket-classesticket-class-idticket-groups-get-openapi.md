@@ -8,8 +8,8 @@ info:
     Get the Ticket Groups for Ticket Class with the specified :ticket_class_id that belongs to the event with :event_id.
     By default, only the ticket groups that are live are shown.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

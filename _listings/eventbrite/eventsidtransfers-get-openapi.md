@@ -6,8 +6,8 @@ info:
   title: Eventbrite Get Events Transfers
   description: Returns a list of transfers for the event.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

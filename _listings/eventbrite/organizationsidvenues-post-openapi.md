@@ -6,8 +6,8 @@ info:
   title: Eventbrite Post Organizations Venues
   description: Creates new venue objects under an organization and returns it as venue.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

@@ -9,8 +9,8 @@ info:
     cancel to be permitted, there must be no pending or completed orders for any dates in the series. Returns a boolean
     indicating success or failure of the cancel.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

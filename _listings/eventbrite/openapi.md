@@ -2,11 +2,11 @@ swagger: "2.0"
 x-collection-name: Eventbrite
 x-complete: 1
 info:
-  title: Eventbrite
-  description: create-manage--promote-events--add-eventmanagement-features-to-your-site--show-the-world-what-exciting-things-are-happening-around-them-
+  title: Eventbrite API
+  description: create-manage-promote-events--add-eventmanagement-features-to-your-site--show-the-world-what-exciting-things-are-happening-around-them-
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:
@@ -3543,12 +3543,12 @@ paths:
       tags:
       - Series
       - Events
-  /event_search:
+  /events/search/:
     get:
-      summary: Get Event Search
+      summary: Event Search
       description: This method uses our search index to find publicly listed events.
       operationId: Get_event_search_
-      x-api-path-slug: event-search-get
+      x-api-path-slug: eventssearch-get
       parameters:
       - in: query
         name: address
@@ -3605,6 +3605,11 @@ paths:
       - in: query
         name: postal_code
         description: The postal/zip code of the venue
+      - in: query
+        name: q
+        description: The query
+        type: string
+        format: string
       - in: query
         name: region
         description: The venue state/province/county/territory depending on the country

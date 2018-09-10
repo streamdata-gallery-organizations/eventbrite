@@ -8,8 +8,8 @@ info:
     Updates an event. Returns an event for the specified event. Does not support updating a repeating event
     series parent (see POST /series/:id/).
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

@@ -7,8 +7,8 @@ info:
   description: Returns a user for the specified user as user. If you want to get details
     about the currently authenticated user, use /users/me/.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

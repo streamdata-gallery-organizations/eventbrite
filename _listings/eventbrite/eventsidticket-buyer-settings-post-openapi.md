@@ -6,8 +6,8 @@ info:
   title: Eventbrite Post Events Ticket Buyer Settings
   description: Updates the ticket buyer settings for an event. Returns a ticket_buyer_settings.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

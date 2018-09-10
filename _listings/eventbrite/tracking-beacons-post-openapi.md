@@ -9,8 +9,8 @@ info:
     is provided, the tracking pixel will fire only for that event. If the user_id
     is provided, the tracking pixel will fire for all events organized by that user.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

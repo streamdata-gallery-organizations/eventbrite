@@ -9,8 +9,8 @@ info:
     of a specific event within an Eventbrite account. Does not support fetching a repeating event series parent
     (see GET /series/:id/).
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

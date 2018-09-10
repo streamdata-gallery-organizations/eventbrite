@@ -9,8 +9,8 @@ info:
     to have a tracking beacon where either one must exist. Returns an tracking_beacon
     as tracking_beacon.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

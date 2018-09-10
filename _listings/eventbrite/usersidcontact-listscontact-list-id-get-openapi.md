@@ -6,8 +6,8 @@ info:
   title: Eventbrite Get Users Contact Lists Contact List
   description: Gets a user&#8217;s contact_list by ID as contact_list.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

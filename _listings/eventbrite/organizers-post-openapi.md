@@ -6,8 +6,8 @@ info:
   title: Eventbrite Post Organizers
   description: Makes a new organizer. Returns an organizer as organizer.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

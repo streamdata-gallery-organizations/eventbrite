@@ -8,8 +8,8 @@ info:
     Returns a list of contact_list that the user owns as the key
     contact_lists.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

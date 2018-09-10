@@ -7,8 +7,8 @@ info:
   description: Creates a duplicate version of the event being copied. Returns the
     event object for the newly created event.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

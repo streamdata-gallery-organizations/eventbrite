@@ -7,8 +7,8 @@ info:
   description: Gets and returns the payout_settings (user instrument ID) associated
     with a given event by its event_id.
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

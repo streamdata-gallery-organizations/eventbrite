@@ -7,8 +7,8 @@ info:
   description: Update a refund-request for a specific order. Each element in items
     is a refund-item
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

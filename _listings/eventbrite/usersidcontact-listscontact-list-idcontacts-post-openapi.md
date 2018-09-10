@@ -7,8 +7,8 @@ info:
   description: 'Adds a new contact to the contact list. Returns {&quot;created&quot;:
     true}.'
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:

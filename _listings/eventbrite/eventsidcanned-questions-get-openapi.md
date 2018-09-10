@@ -7,8 +7,8 @@ info:
   description: 'This endpoint returns canned questions of a single event (examples:
     first name, last name, company, prefix, etc.). This endpoint will return question.'
   version: 1.0.0
-host: www.eventbrite.com
-basePath: /%7Bdata-type%7D/
+host: www.eventbriteapi.com
+basePath: /v3/
 schemes:
 - http
 produces:
